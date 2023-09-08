@@ -45,7 +45,6 @@ function Detail() {
         </Roadview>
       </div>
       <div style={{width:"50%", margin:"0 auto", marginTop: "50px"}}>
-
         <p style={{textAlign: "justify", lineHeight: 2 }}>{data.ITEMCNTNTS}</p>
       </div>
     </div>
