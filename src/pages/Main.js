@@ -130,7 +130,7 @@ function Main() {
    }
    useEffect(()=>{
     axios.get(`https://apis.data.go.kr/6260000/FestivalService/getFestivalKr?serviceKey=${process.env.REACT_APP_APIKEY}&pageNo=1&numOfRows=100&resultType=json`).then(function(res){
-      setAllData(res.data.getBasedList.item);
+      setAllData(res.data.getFestivalKr.item);
     })
    },[])
 
