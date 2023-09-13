@@ -118,7 +118,6 @@ function Main() {
     if(endPage <totalPage){
       setPage(startPage + pagination)
     }
-
   }
    const PageList = [];
    for(let i = startPage; i <= endPage; i++){
@@ -202,7 +201,6 @@ function Main() {
                       state={
                         e
                       }
-                    
                     >
 
                     <h3>{e.TITLE}</h3>
@@ -226,7 +224,6 @@ function Main() {
                 )
               })
             }
-
         </ContentWrap>
       </Content>
       <Pagination>
