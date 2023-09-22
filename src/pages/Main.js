@@ -145,8 +145,9 @@ function Main() {
    const FilterData = data && data.filter(e =>{
     return gugun === "전체" || gugun === e.GUGUN_NM
    })
-
    const FilterGugun = [...new Set(alldata && alldata.map(e=>e.GUGUN_NM))];   
+
+
    const [isActive, setIsActive] = useState(-1);
    const [isOn, setIsOn] = useState(-1);
   //  false값으 무조건 숫자로 들어가야함 내가 선택한 번호와 셋팅한 번호가 같다면
@@ -170,14 +171,11 @@ function Main() {
           } */}
             <ul>
               <li className={isActive === -1 ? 'on' : ''} 
-                    onClick={
-                      ()=>{
-                        setIsActive(-1);
-                        setGugun("전체");
-                      }
-                     }>전체</li>
-              {
-                data && FilterGugun.map((e,i)=>{
+                    onClick={()=>{
+                      setIsActive(-1);
+                      setGugun("전체");
+                    }}>전체</li>
+                {data && FilterGugun.map((e,i)=>{
                   return(
                     <li className={isActive === i ? 'on' : ''} 
                     onClick={
@@ -185,8 +183,7 @@ function Main() {
                         setIsActive(i)
                         setGugun(e)
                         // (isActive === false ? true : false) = 참거짓을때만 1번에 한해서 (!isActive=isActive가 아니라면)로 쓸 수 있음
-                      }
-                    } key={i}>{e}</li>
+                      }} key={i}>{e}</li>
                   )
                 })
               }
@@ -198,11 +195,7 @@ function Main() {
                 return(
                   <ContentItem key={i}>
                     <NavLink to={`detail/${e.UC_SEQ}`}
-                      state={
-                        e
-                      }
-                    >
-
+                      state={e}>
                     <h3>{e.TITLE}</h3>
                     <img src={e.MAIN_IMG_THUMB} alt={e.MAIN_TITLE} />
                     <ul>
