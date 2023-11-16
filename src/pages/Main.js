@@ -2,6 +2,7 @@ import axios, { Axios } from 'axios'
 import React, { useEffect, useState } from 'react'
 import { styled } from 'styled-components'
 import { NavLink } from 'react-router-dom'
+import Header from '../components/Header'
 
 const Content = styled.div`
     background-color: ${(props) => props.theme.colors.BgColor};
@@ -50,7 +51,7 @@ const Category = styled.div`
       background-color: ${(props) => props.theme.colors.ContentBg};
       color: ${(props) => props.theme.colors.Color};
       &.on{
-        background-color: lightyellow;
+        background-color: lightskyblue;
         font-weight: bold;
         color: #000;
       }
@@ -76,13 +77,14 @@ const Pagination = styled.div`
       background-color: ${(props) => props.theme.colors.ContentBg};
       padding: 5px 20px;
       &.on{
-        background-color: lightyellow;
+        background-color: lightskyblue;
         font-weight: bold;
         color: #000;
       }
     }
   }
 `
+
 
 function Main() {
    const [data, setData] = useState();
@@ -93,7 +95,6 @@ function Main() {
    const [gugun, setGugun] = useState("전체")
    const pagination = 5;
    const totalPage = Math.floor(totalCnt / list);
-  //  floor 소수점 값을 버림 예)1.6이면 1 
 
 
    let startPage;
@@ -137,22 +138,23 @@ function Main() {
     axios.get(`https://apis.data.go.kr/6260000/FestivalService/getFestivalKr?serviceKey=${process.env.REACT_APP_APIKEY}&pageNo=${page}&numOfRows=10&resultType=json`).then(function(res){
       setData(res.data.getFestivalKr.item);
       setTotalCnt(res.data.getFestivalKr.totalCount);
+
       
     })
    },[page])
-
+  
 
    const FilterData = data && data.filter(e =>{
     return gugun === "전체" || gugun === e.GUGUN_NM
    })
    const FilterGugun = [...new Set(alldata && alldata.map(e=>e.GUGUN_NM))];   
 
-
    const [isActive, setIsActive] = useState(-1);
    const [isOn, setIsOn] = useState(-1);
   //  false값으 무조건 숫자로 들어가야함 내가 선택한 번호와 셋팅한 번호가 같다면
   return (
     <>
+    <Header/>
       <Content>
         <Category>
         {/* <div className={isOn === -1 ? 'on' : ''} 
@@ -189,6 +191,7 @@ function Main() {
               }
             </ul>  
         </Category>
+
         <ContentWrap>
             {
               data && FilterData.map((e,i)=>{

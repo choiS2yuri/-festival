@@ -47,7 +47,6 @@ function App() {
       <ThemeProvider theme={DarkMode}>
         <GlobalStyle />
         <Aside ThemeSelect={ThemeSelect} themeConfig={themeConfig}/>
-
           <Routes>
             <Route path="/" element={<Main/>}></Route>
             <Route path="/date" element={<Datepicker />}></Route>
